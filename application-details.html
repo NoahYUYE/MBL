@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBL Digital Mine Control Tower Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        [lang="en"] .lang-cn,
+        [lang="cn"] .lang-en {
+            display: none;
+        }
+        .section-title {
+            @apply text-3xl font-bold text-gray-800;
+        }
+        .section-subtitle {
+            @apply text-xl text-gray-500;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans" lang="cn">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="index.html"><img src="../03_素材/图标/树根互联logo-EN.png" alt="Logo" class="h-8 mr-4"></a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html#business" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">业务场景</span>
+                    <span class="lang-en">Business Scenario</span>
+                </a>
+                <a href="index.html#design" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">架构设计</span>
+                    <span class="lang-en">Solution Architecture</span>
+                </a>
+                <a href="index.html#architecture" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">方案详解</span>
+                    <span class="lang-en">Solution Design</span>
+                </a>
+                <a href="index.html#roadmap" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">实施路径</span>
+                    <span class="lang-en">Roadmap</span>
+                </a>
+                 <a href="index.html#case-study" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">参考案例</span>
+                    <span class="lang-en">Case Study</span>
+                </a>
+            </div>
+            <div class="flex items-center">
+                <button id="lang-switcher" class="text-sm font-semibold bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">
+                    <span class="lang-cn">EN</span>
+                    <span class="lang-en">中</span>
+                </button>
+                <button class="md:hidden ml-4" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="index.html#business" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">业务场景</span><span class="lang-en">Business Scenario</span></a>
+            <a href="index.html#design" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">架构设计</span><span class="lang-en">Architecture</span></a>
+            <a href="index.html#architecture" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">方案详解</span><span class="lang-en">Solution Design</span></a>
+            <a href="index.html#roadmap" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">实施路径</span><span class="lang-en">Roadmap</span></a>
+            <a href="index.html#case-study" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">参考案例</span><span class="lang-en">Case Study</span></a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="bg-gray-50">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h1 class="text-5xl font-extrabold text-gray-900">
+                    <span class="lang-cn">应用功能详情</span>
+                    <span class="lang-en">Application Function Details</span>
+                </h1>
+                <p class="mt-4 text-2xl text-gray-600">
+                    <span class="lang-cn">深入了解构成解决方案的每一个功能模块</span>
+                    <span class="lang-en">A deep dive into every functional module of the solution</span>
+                </p>
+                 <div class="mt-8">
+                    <a href="index.html#architecture" class="text-blue-600 hover:text-blue-800 font-semibold">
+                        <span class="lang-cn">&larr; 返回解决方案架构</span>
+                        <span class="lang-en">&larr; Back to Solution Architecture</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Functions List -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="flex flex-col md:flex-row -mx-4">
+                    <!-- Sticky Sidebar -->
+                    <aside class="w-full md:w-1/4 px-4 mb-8 md:mb-0">
+                        <div class="sticky top-24">
+                            <h3 class="text-lg font-bold mb-4 text-gray-800"><span class="lang-cn">功能导航</span><span class="lang-en">Function Navigation</span></h3>
+                            <ul class="space-y-2">
+                                <li><a href="#frontend" class="block py-1 text-gray-600 hover:text-blue-600 font-semibold"><span class="lang-cn">控制塔层-前端</span><span class="lang-en">Control Tower - Frontend</span></a></li>
+                                <li><a href="#backend" class="block py-1 text-gray-600 hover:text-blue-600 font-semibold"><span class="lang-cn">控制塔层-后端</span><span class="lang-en">Control Tower - Backend</span></a></li>
+                                <li><a href="#application" class="block py-1 text-gray-600 hover:text-blue-600 font-semibold"><span class="lang-cn">应用层</span><span class="lang-en">Application Layer</span></a></li>
+                                <li><a href="#device" class="block py-1 text-gray-600 hover:text-blue-600 font-semibold"><span class="lang-cn">设备层</span><span class="lang-en">Device Layer</span></a></li>
+                                <li><a href="#integration" class="block py-1 text-gray-600 hover:text-blue-600 font-semibold"><span class="lang-cn">系统集成</span><span class="lang-en">System Integration</span></a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <!-- Main Content -->
+                    <div class="w-full md:w-3/4 px-4">
+                        <!-- 控制塔层前端 -->
+                        <div id="frontend" class="mb-16 scroll-mt-24">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-blue-500">
+                                <span class="lang-cn">控制塔层-前端</span><span class="lang-en">Control Tower - Frontend</span>
+                            </h2>
+                            <div class="space-y-12">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">综合驾驶舱</span><span class="lang-en">Comprehensive Dashboard</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">运营KPI总览</span><span class="lang-en">Operation KPI Overview</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Displays key operational indicator cards, including transport volume, equipment utilization, energy consumption metrics, etc.</span><span class="lang-cn">显示关键运营指标卡片组，包括运输量、设备利用率、能耗指标等</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Single-screen overview, highlights key points, supports data drill-down, configurable refresh strategy (near real-time/hourly).</span><span class="lang-cn">一屏全览、重点突出、支持数据钻取、可配置的刷新策略（准实时/每小时）</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Allows management to quickly grasp the overall operational status of the mine and promptly identify indicators deviating from the plan.</span><span class="lang-cn">管理人员能够快速掌握矿山整体运营状态，及时发现偏离计划的指标</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">任务执行监控</span><span class="lang-en">Task Execution Monitoring</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Displays a list of currently executing transport tasks and their completion progress.</span><span class="lang-cn">显示当前正在执行的运输任务列表及完成进度</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">List-based display, progress updates.</span><span class="lang-cn">列表形式展示、进度更新</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Dispatchers can track task completion in real time and handle execution deviations promptly.</span><span class="lang-cn">调度员能实时跟踪任务完成情况，及时处理执行偏差</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">设备状态分布</span><span class="lang-en">Equipment Status Distribution</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Displays the quantity distribution of equipment in different statuses using pie/bar charts.</span><span class="lang-cn">以饼图/条形图显示不同状态设备的数量分布</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Visual charts (pie/bar), status color coding, drill-down to resource view.</span><span class="lang-cn">可视化图表（饼图/条形图）、状态色彩编码、可钻取到资源视图</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Fleet managers can quickly understand the overall health of the fleet and identify common issues in equipment management.</span><span class="lang-cn">车队经理能快速了解车队整体健康状况，识别设备管理中的普遍性问题</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">告警与异常中心</span><span class="lang-en">Alert & Exception Center</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Centrally displays various real-time alerts and exception events.</span><span class="lang-cn">集中展示各类实时告警和异常事件</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Alert levels (high/medium/low), real-time push, support for acknowledgment and handling.</span><span class="lang-cn">告警分级（高/中/低）、实时推送、支持确认和处理</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Ensures that critical exceptions are detected and responded to in a timely manner, forming a closed management loop.</span><span class="lang-cn">确保关键异常能被及时发现和响应，形成管理闭环</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">流程视图</span><span class="lang-en">Process View</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">Hauling流程可视化</span><span class="lang-en">Hauling Process Visualization</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Visualizes the entire Hauling operation process (planning, loading, transport, dumping, return) in the form of Gantt charts or flowcharts.</span><span class="lang-cn">以甘特图或流程图形式，可视化展示Hauling作业（规划、装载、运输、卸载、返回）的全流程</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Process segment coloring, key node highlighting, real-time progress updates.</span><span class="lang-cn">流程分段着色、关键节点高亮、实时进度更新</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Managers can intuitively identify process bottlenecks and locate efficiency shortcomings.</span><span class="lang-cn">管理者能直观识别流程瓶颈，定位效率短板</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">环节KPI监控</span><span class="lang-en">Stage KPI Monitoring</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Displays core KPI metrics for each stage (e.g., loading, transport) on the process view.</span><span class="lang-cn">在流程视图的每个环节（如装载、运输）上，显示该环节的核心KPI指标</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Real-time KPI calculation, association with process nodes, supports YoY/MoM analysis.</span><span class="lang-cn">KPI实时计算、与流程节点关联、支持同比/环比分析</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Helps managers quantitatively assess the operational performance of each stage.</span><span class="lang-cn">帮助管理者量化评估各环节的运营表现</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">瓶颈分析</span><span class="lang-en">Bottleneck Analysis</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Automatically identifies and highlights the most time-consuming or longest-waiting stages in the process.</span><span class="lang-cn">自动识别并高亮显示流程中耗时最长或等待时间最长的环节</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Automatic bottleneck identification algorithm, historical data comparison, cause drill-down.</span><span class="lang-cn">瓶颈自动识别算法、历史数据对比、原因下钻</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Pinpoints key stages for process optimization and provides data support for decision-making.</span><span class="lang-cn">精准定位流程优化的关键环节，为决策提供数据支持</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">任务详情追溯</span><span class="lang-en">Task Details Tracking</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Supports clicking on a task in the process to trace its complete lifecycle and all associated data.</span><span class="lang-cn">支持点击流程中的某个任务，追溯其完整的生命周期和所有关联数据</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Full task lifecycle view, drill-down of associated data (vehicle/driver).</span><span class="lang-cn">任务全生命周期视图、关联数据（车辆/司机）钻取</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Provides a complete data chain for troubleshooting and performance analysis of specific tasks.</span><span class="lang-cn">为特定任务的异常排查和绩效分析提供完整数据链条</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">资源视图</span><span class="lang-en">Resource View</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">资源列表与状态</span><span class="lang-en">Resource List & Status</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Displays a list of all key resources (vehicles, drivers, equipment) and their current status.</span><span class="lang-cn">以列表形式展示所有关键资源（车辆、司机、设备）及其当前状态</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Supports multiple resource types, real-time status updates, configurable columns.</span><span class="lang-cn">多资源类型支持、状态实时更新、可配置列</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Provides a unified view of all available resources in the mine area.</span><span class="lang-cn">提供矿区内所有可用资源的统一视图</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">资源搜索与筛选</span><span class="lang-en">Resource Search & Filtering</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Provides search and filtering functions based on various conditions such as resource type, name, and status.</span><span class="lang-cn">提供按资源类型、名称、状态等多种条件的搜索和筛选功能</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Complex condition search, fuzzy matching.</span><span class="lang-cn">复合条件搜索、模糊匹配</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Helps users quickly locate the specific resources they are concerned about.</span><span class="lang-cn">帮助用户快速定位到其关注的特定资源</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">资源详情面板</span><span class="lang-en">Resource Details Panel</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Click on a resource in the list to view its detailed information, associated KPIs, and historical data.</span><span class="lang-cn">点击资源列表中的某个资源，可查看其详细信息、关联KPI和历史数据</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Modular information display, historical data charting, links to related information.</span><span class="lang-cn">模块化信息展示、历史数据图表化、关联信息链接</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Provides a 360-degree panoramic view of a single resource.</span><span class="lang-cn">提供单个资源的360度全景视图</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <div class="flex justify-between items-start mb-3">
+                                                <h4 class="font-bold text-lg text-gray-900"><span class="lang-cn">资源健康度评估</span><span class="lang-en">Resource Health Assessment</span></h4>
+                                            </div>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Desc: </b><span class="lang-en">Comprehensively displays the health status score (SOH) or maintenance status of resources.</span><span class="lang-cn">综合展示资源的健康状态评分（SOH）或维护状态</span></p>
+                                            <p class="text-gray-600 mb-3"><b class="lang-en">Features: </b><span class="lang-en">Health score model, status light (red/yellow/green) warnings.</span><span class="lang-cn">健康度评分模型、状态灯（红/黄/绿）预警</span></p>
+                                            <p class="text-gray-600"><b class="lang-en">Effect: </b><span class="lang-en">Helps managers quickly identify resources that are in a sub-optimal or faulty state.</span><span class="lang-cn">帮助管理者快速识别处于亚健康或故障状态的资源</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+        
+                        <!-- 控制塔层后端 -->
+                        <div id="backend" class="mb-16 scroll-mt-24">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-green-500">
+                                <span class="lang-cn">控制塔层-后端</span><span class="lang-en">Control Tower - Backend</span>
+                            </h2>
+                            <div class="space-y-12">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">数据集成架构</span><span class="lang-en">Data Integration Architecture</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">实时API接口集成</span><span class="lang-en">Real-time API Integration</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Obtain data in real-time from the intelligent Hauling system and equipment management system through standardized APIs.</span><span class="lang-cn">通过标准化API从智能Hauling系统和设备管理系统实时获取数据。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">消息队列集成</span><span class="lang-en">Message Queue Integration</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Receive key events and status changes pushed by the application system by subscribing to a message queue.</span><span class="lang-cn">通过订阅消息队列，接收应用系统推送的关键事件和状态变更。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">批量数据同步</span><span class="lang-en">Batch Data Synchronization</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Periodically synchronize historical and summary data from application system databases via ETL processes.</span><span class="lang-cn">通过ETL过程，定期从应用系统数据库同步历史和汇总数据。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">数据清洗与转换</span><span class="lang-en">Data Cleansing and Transformation</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Cleans, transforms format, and standardizes collected raw data before storage.</span><span class="lang-cn">在数据存储前，对采集到的原始数据进行清洗、格式转换和标准化处理。</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">计算引擎</span><span class="lang-en">Computation Engine</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">事件驱动实时计算</span><span class="lang-en">Event-Driven Real-time Calculation</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Triggers corresponding indicator calculations in real time based on business events.</span><span class="lang-cn">基于从消息队列等渠道获取的业务事件（如装载完成、卸载开始），实时触发相应的指标计算。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">流式数据处理</span><span class="lang-en">Stream Data Processing</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Processes continuous streams of equipment status and location data, e.g., calculating moving average speed.</span><span class="lang-cn">对连续产生的设备状态和位置数据流进行处理，例如计算移动平均速度、判断是否偏离路线等。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">实时告警生成</span><span class="lang-en">Real-time Alert Generation</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Built-in rules engine generates alert information based on preset rules (e.g., waiting timeout, speed anomaly).</span><span class="lang-cn">内置规则引擎，根据预设规则（如等待超时、速度异常）对实时数据进行判断，生成告警信息。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">周期性批量计算</span><span class="lang-en">Periodic Batch Calculation</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Aggregates data within a time period according to a set schedule to generate KPIs like hourly output or daily utilization.</span><span class="lang-cn">按设定的周期（如每小时、每天）对时间段内的数据进行聚合计算，生成中低频KPI，如小时产量、日利用率等。</span></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="text-xl font-semibold text-gray-600 my-6"><span class="lang-cn">核心KPI体系</span><span class="lang-en">Core KPI System</span></h4>
+                                    <div class="bg-gray-100 p-6 rounded-lg text-center">
+                                        <p class="text-gray-700"><b class="lang-cn">说明：</b><span class="lang-cn">我们已经构建了一套完整、分层的KPI体系，用于全面衡量矿山运营的各个方面，从高层管理决策到具体流程环节和资源表现。这套体系是发现问题、驱动优化的数据基础。</span><span class="lang-en"><b>Note:</b> We have built a complete, multi-layered KPI system to comprehensively measure all aspects of mine operations, from high-level management decisions to specific process stages and resource performance. This system serves as the data foundation for identifying issues and driving optimization.</span></p>
+                                        <a href="kpi-details.html" class="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 mt-4">
+                                            <span class="lang-cn">查看详细KPI体系 &rarr;</span>
+                                            <span class="lang-en">View Detailed KPI System &rarr;</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">API服务</span><span class="lang-en">API Services</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">Dashboard数据服务</span><span class="lang-en">Dashboard Data Service</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Provides a set of REST APIs to get all the data required for the comprehensive dashboard.</span><span class="lang-cn">提供一套REST API，用于获取综合驾驶舱所需的全部数据。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">实时数据推送服务</span><span class="lang-en">Real-time Data Push Service</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Provides a WebSocket-based real-time data push channel for alerts and high-frequency KPIs.</span><span class="lang-cn">提供基于WebSocket的实时数据推送通道，用于告警和高频KPI。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">通用服务API</span><span class="lang-en">Common Services API</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Provides common APIs for authentication (RBAC), data dictionary queries, and system configuration.</span><span class="lang-cn">提供通用API，用于身份认证（RBAC）、数据字典查询和系统配置。</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- 应用层 -->
+                        <div id="application" class="mb-16 scroll-mt-24">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-yellow-500">
+                                <span class="lang-cn">应用层</span><span class="lang-en">Application Layer</span>
+                            </h2>
+                            <div class="space-y-12">
+                                <!-- Intelligent Hauling System Accordion -->
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">智能Hauling系统</span><span class="lang-en">Intelligent Hauling System</span></h3>
+                                    <div id="accordion-hauling" data-accordion="collapse">
+                                        <!-- 任务规划 -->
+                                        <h2 id="accordion-hauling-heading-1">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-1" aria-expanded="true" aria-controls="accordion-hauling-body-1">
+                                                <span><span class="lang-cn">任务规划</span><span class="lang-en">Plan Scheduling</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-1" class="hidden" aria-labelledby="accordion-hauling-heading-1">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">计划编排</span><span class="lang-en">Plan Scheduling</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">创建日/周/月运输计划，设定目标运输量和资源需求</span><span class="lang-en">Create daily/weekly/monthly transportation plans, setting target volumes and resource requirements.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">资源分配</span><span class="lang-en">Resource Allocation</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">根据计划需求分配车辆和司机资源</span><span class="lang-en">Allocate vehicle and driver resources based on plan requirements.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">计划调整</span><span class="lang-en">Plan Adjustment</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">根据实际情况动态调整已制定计划</span><span class="lang-en">Dynamically adjust existing plans based on actual conditions.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">KPI监控</span><span class="lang-en">KPI Monitoring</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">跟踪计划执行情况与KPI达成度</span><span class="lang-en">Track plan execution and KPI achievement.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 装载管理 -->
+                                        <h2 id="accordion-hauling-heading-2">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-2" aria-expanded="false" aria-controls="accordion-hauling-body-2">
+                                                <span><span class="lang-cn">装载管理</span><span class="lang-en">Loading Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-2" class="hidden" aria-labelledby="accordion-hauling-heading-2">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">装载点管理</span><span class="lang-en">Loading Point Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理煤场内各装载点的配置和状态</span><span class="lang-en">Manage the configuration and status of each loading point in the stockyard.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">装载调度</span><span class="lang-en">Loading Scheduling</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">安排车辆到特定装载点进行装载</span><span class="lang-en">Arrange vehicles to specific loading points for loading.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 运输管理 -->
+                                        <h2 id="accordion-hauling-heading-3">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-3" aria-expanded="false" aria-controls="accordion-hauling-body-3">
+                                                <span><span class="lang-cn">运输管理</span><span class="lang-en">Transportation Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-3" class="hidden" aria-labelledby="accordion-hauling-heading-3">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">车辆跟踪</span><span class="lang-en">Vehicle Tracking</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">实时监控车辆位置、状态和运行参数</span><span class="lang-en">Real-time monitoring of vehicle location, status, and operational parameters.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">异常监控</span><span class="lang-en">Anomaly Monitoring</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">监测和管理运输过程中的异常情况</span><span class="lang-en">Monitor and manage anomalies during transportation.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">路况管理</span><span class="lang-en">Road Condition Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理运输路线的状况和通行能力</span><span class="lang-en">Manage the condition and capacity of transport routes.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">驾驶行为分析</span><span class="lang-en">Driving Behavior Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">分析司机驾驶行为，评估安全性和经济性</span><span class="lang-en">Analyze driver behavior to assess safety and economy.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">运输指标分析</span><span class="lang-en">Transportation Metrics Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">分析关键运输指标，评估运输效率</span><span class="lang-en">Analyze key transport metrics to evaluate efficiency.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 驳船装载 -->
+                                        <h2 id="accordion-hauling-heading-4">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-4" aria-expanded="false" aria-controls="accordion-hauling-body-4">
+                                                <span><span class="lang-cn">驳船装载</span><span class="lang-en">Barge Loading</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-4" class="hidden" aria-labelledby="accordion-hauling-heading-4">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">码头调度</span><span class="lang-en">Port Scheduling</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理车辆到港卸载的时间安排</span><span class="lang-en">Manage vehicle arrival and unloading schedules at the port.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">驳船协同</span><span class="lang-en">Barge Coordination</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">协调驳船装载计划与煤炭运输计划</span><span class="lang-en">Coordinate barge loading plans with coal transport plans.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 空车返回 -->
+                                        <h2 id="accordion-hauling-heading-5">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-5" aria-expanded="false" aria-controls="accordion-hauling-body-5">
+                                                <span><span class="lang-cn">空车返回</span><span class="lang-en">Empty Return</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-5" class="hidden" aria-labelledby="accordion-hauling-heading-5">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">返程监控</span><span class="lang-en">Return Monitoring</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">监控空车返回过程中的状态和进度</span><span class="lang-en">Monitor the status and progress of empty vehicles returning.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 司机管理 -->
+                                        <h2 id="accordion-hauling-heading-6">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-6" aria-expanded="false" aria-controls="accordion-hauling-body-6">
+                                                <span><span class="lang-cn">司机与绩效管理</span><span class="lang-en">Driver & Performance Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-6" class="hidden" aria-labelledby="accordion-hauling-heading-6">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">司机档案管理</span><span class="lang-en">Driver Profile Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">维护司机基本信息和资质记录</span><span class="lang-en">Maintain basic driver information and qualification records.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">排班管理</span><span class="lang-en">Shift Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">安排司机工作时间和任务分配</span><span class="lang-en">Arrange driver work hours and task assignments.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">绩效评估</span><span class="lang-en">Performance Evaluation</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">评估司机工作表现和工作质量</span><span class="lang-en">Evaluate driver performance and work quality.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 车辆检查 -->
+                                        <h2 id="accordion-hauling-heading-7">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-7" aria-expanded="false" aria-controls="accordion-hauling-body-7">
+                                                <span><span class="lang-cn">车辆检查管理</span><span class="lang-en">Vehicle Inspection Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-7" class="hidden" aria-labelledby="accordion-hauling-heading-7">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">检查项目管理</span><span class="lang-en">Inspection Item Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">设置和管理车辆检查项目清单</span><span class="lang-en">Set up and manage vehicle inspection checklists.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">出车检查</span><span class="lang-en">Pre-departure Inspection</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理车辆出车前的安全检查流程</span><span class="lang-en">Manage the pre-departure safety inspection process for vehicles.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">回场检查</span><span class="lang-en">Return Inspection</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理车辆回场后的状态检查</span><span class="lang-en">Manage post-return vehicle status checks.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">异常处理</span><span class="lang-en">Anomaly Handling</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">处理检查过程中发现的车辆异常</span><span class="lang-en">Handle vehicle anomalies found during inspections.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 能源管理 -->
+                                        <h2 id="accordion-hauling-heading-8">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-8" aria-expanded="false" aria-controls="accordion-hauling-body-8">
+                                                <span><span class="lang-cn">能源管理</span><span class="lang-en">Energy Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-8" class="hidden" aria-labelledby="accordion-hauling-heading-8">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">能耗数据采集</span><span class="lang-en">Energy Consumption Data Collection</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">采集和管理车辆能源消耗数据</span><span class="lang-en">Collect and manage vehicle energy consumption data.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">能耗分析</span><span class="lang-en">Energy Consumption Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">分析能源消耗模式和影响因素</span><span class="lang-en">Analyze energy consumption patterns and influencing factors.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">能源成本管理</span><span class="lang-en">Energy Cost Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理和控制能源相关成本</span><span class="lang-en">Manage and control energy-related costs.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 司机移动端应用 -->
+                                        <h2 id="accordion-hauling-heading-9">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-hauling-body-9" aria-expanded="false" aria-controls="accordion-hauling-body-9">
+                                                <span><span class="lang-cn">司机移动端应用</span><span class="lang-en">Driver Mobile App</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-hauling-body-9" class="hidden" aria-labelledby="accordion-hauling-heading-9">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">任务接收与管理</span><span class="lang-en">Task Reception & Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">接收调度中心的运输任务，查看详情并确认或拒绝</span><span class="lang-en">Receive transport tasks from the dispatch center, view details, and confirm or decline.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">状态上报与确认</span><span class="lang-en">Status Reporting & Confirmation</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">司机手动确认关键作业节点，如到达、开始装载、完成装载等</span><span class="lang-en">Driver manually confirms key job nodes, such as arrival, start loading, finish loading, etc.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">车辆检查</span><span class="lang-en">Vehicle Inspection</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">通过App完成出车前和回场后的电子化检查，支持拍照上传</span><span class="lang-en">Complete pre-departure and post-return electronic inspections via the app, with photo upload support.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">个人中心</span><span class="lang-en">Personal Center</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">查看个人排班、历史任务、绩效数据和安全驾驶评分</span><span class="lang-en">View personal schedules, historical tasks, performance data, and safe driving scores.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Equipment Management System Accordion -->
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">设备管理系统</span><span class="lang-en">Equipment Management System</span></h3>
+                                    <div id="accordion-equipment" data-accordion="collapse">
+                                        <!-- 设备类型管理 -->
+                                        <h2 id="accordion-equipment-heading-1">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-1" aria-expanded="true" aria-controls="accordion-equipment-body-1">
+                                                <span><span class="lang-cn">设备类型管理</span><span class="lang-en">Equipment Type Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-1" class="hidden" aria-labelledby="accordion-equipment-heading-1">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">设备台账</span><span class="lang-en">Equipment Ledger</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">管理设备的基本信息、技术参数、采购信息和资产状态</span><span class="lang-en">Manage basic information, technical parameters, procurement information, and asset status of equipment.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 数据监测 -->
+                                        <h2 id="accordion-equipment-heading-2">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-2" aria-expanded="false" aria-controls="accordion-equipment-body-2">
+                                                <span><span class="lang-cn">数据监测</span><span class="lang-en">Data Monitoring</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-2" class="hidden" aria-labelledby="accordion-equipment-heading-2">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">实时数据显示</span><span class="lang-en">Real-time Data Display</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">以仪表盘或列表形式展示设备的实时运行参数</span><span class="lang-en">Display real-time operating parameters of equipment in dashboards or lists.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">历史数据查询</span><span class="lang-en">Historical Data Query</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">查询和分析设备的历史运行数据</span><span class="lang-en">Query and analyze historical operational data of equipment.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">告警管理</span><span class="lang-en">Alarm Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">根据预设规则生成、推送和管理设备告警</span><span class="lang-en">Generate, push, and manage equipment alarms based on preset rules.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- GPS跟踪 -->
+                                        <h2 id="accordion-equipment-heading-3">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-3" aria-expanded="false" aria-controls="accordion-equipment-body-3">
+                                                <span><span class="lang-cn">GPS与地理围栏</span><span class="lang-en">GPS & Geo-fencing</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-3" class="hidden" aria-labelledby="accordion-equipment-heading-3">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">实时定位</span><span class="lang-en">Real-time Positioning</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">在地图上实时显示设备的位置和移动轨迹</span><span class="lang-en">Display real-time location and movement trajectory of equipment on a map.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">地理围栏</span><span class="lang-en">Geo-fencing</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">设置虚拟地理边界，监控设备进出特定区域</span><span class="lang-en">Set virtual geographical boundaries to monitor equipment entering or leaving specific areas.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">轨迹回放</span><span class="lang-en">Track Replay</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">回放指定设备在特定时间段内的历史轨迹</span><span class="lang-en">Replay the historical trajectory of a specified a device within a specific time frame.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 设备维护 -->
+                                        <h2 id="accordion-equipment-heading-4">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-4" aria-expanded="false" aria-controls="accordion-equipment-body-4">
+                                                <span><span class="lang-cn">设备维护</span><span class="lang-en">Equipment Maintenance</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-4" class="hidden" aria-labelledby="accordion-equipment-heading-4">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">维护计划管理</span><span class="lang-en">Maintenance Plan Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">创建和管理基于时间或使用量的预防性维护计划</span><span class="lang-en">Create and manage preventive maintenance plans based on time or usage.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">工单管理</span><span class="lang-en">Work Order Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">全流程管理维护工单的创建、派发、执行和关闭</span><span class="lang-en">Manage the entire lifecycle of maintenance work orders from creation, dispatch, execution, to closure.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">维护记录与知识库</span><span class="lang-en">Maintenance Records & Knowledge Base</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">记录所有维护历史，并形成可供查询的知识库</span><span class="lang-en">Record all maintenance history and form a searchable knowledge base.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">预测性维护</span><span class="lang-en">Predictive Maintenance</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">基于数据分析和算法模型，预测设备潜在故障</span><span class="lang-en">Predict potential equipment failures based on data analysis and algorithmic models.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 轮胎健康管理 -->
+                                        <h2 id="accordion-equipment-heading-5">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-5" aria-expanded="false" aria-controls="accordion-equipment-body-5">
+                                                <span><span class="lang-cn">轮胎健康管理</span><span class="lang-en">Tire Health Management</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-5" class="hidden" aria-labelledby="accordion-equipment-heading-5">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">胎压胎温监测</span><span class="lang-en">Tire Pressure & Temperature Monitoring</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">实时监测轮胎的压力和温度数据</span><span class="lang-en">Real-time monitoring of tire pressure and temperature data.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">轮胎生命周期管理</span><span class="lang-en">Tire Lifecycle Management</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">跟踪每个轮胎从入库、安装、换位到报废的全过程</span><span class="lang-en">Track the entire lifecycle of each tire from warehousing to disposal.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">磨损分析</span><span class="lang-en">Wear Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">根据行驶里程和工况分析轮胎磨损，判断更换周期</span><span class="lang-en">Analyze tire wear based on mileage and conditions to determine replacement cycles.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 燃料/能源消耗 -->
+                                        <h2 id="accordion-equipment-heading-6">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-b-0 border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-6" aria-expanded="false" aria-controls="accordion-equipment-body-6">
+                                                <span><span class="lang-cn">燃料/能源消耗</span><span class="lang-en">Fuel/Energy Consumption</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-6" class="hidden" aria-labelledby="accordion-equipment-heading-6">
+                                            <div class="p-5 border border-b-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">能耗计量</span><span class="lang-en">Energy Metering</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">精确记录每台设备的燃料加注量或充电量</span><span class="lang-en">Accurately record the fuel or charge amount for each piece of equipment.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">单耗分析</span><span class="lang-en">Unit Consumption Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">分析设备单位工时或单位产量的能耗水平</span><span class="lang-en">Analyze the energy consumption level per unit of work hour or output.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 统计报表 -->
+                                        <h2 id="accordion-equipment-heading-7">
+                                            <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-600 border border-gray-200 focus:ring-4 focus:ring-blue-200 hover:bg-blue-50" data-accordion-target="#accordion-equipment-body-7" aria-expanded="false" aria-controls="accordion-equipment-body-7">
+                                                <span><span class="lang-cn">统计报表</span><span class="lang-en">Statistical Reports</span></span>
+                                                <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                                            </button>
+                                        </h2>
+                                        <div id="accordion-equipment-body-7" class="hidden" aria-labelledby="accordion-equipment-heading-7">
+                                            <div class="p-5 border border-t-0 border-gray-200">
+                                                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">设备运营报表</span><span class="lang-en">Equipment Operation Report</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">计算并展示设备的综合效率（OEE）</span><span class="lang-en">Calculate and display the Overall Equipment Effectiveness (OEE).</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">设备事件报表</span><span class="lang-en">Equipment Event Report</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">分析设备的平均无故障时间（MTBF）和平均修复时间（MTTR）</span><span class="lang-en">Analyze Mean Time Between Failures (MTBF) and Mean Time To Repair (MTTR).</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">设备能耗报表</span><span class="lang-en">Equipment Energy Consumption Report</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">统计和分析各类设备的能源消耗情况</span><span class="lang-en">Analyze and report on energy consumption for various types of equipment.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">设备综合报表</span><span class="lang-en">Comprehensive Equipment Report</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">提供一个集成的视图，汇总展示单一或一组设备的关键信息</span><span class="lang-en">Provide an integrated view summarizing key information for a single or group of equipment.</span></p></div>
+                                                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm"><h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">维护成本分析</span><span class="lang-en">Maintenance Cost Analysis</span></h4><p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-cn">统计和分析设备维护相关的人工、备件和外包成本</span><span class="lang-en">Analyze and report on maintenance-related labor, spare parts, and outsourcing costs.</span></p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                         <!-- 设备层 -->
+                        <div id="device" class="mb-16 scroll-mt-24">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-red-500">
+                                <span class="lang-cn">设备层</span><span class="lang-en">Device Layer</span>
+                            </h2>
+                             <div class="space-y-12">
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">三一设备集成 (原生)</span><span class="lang-en">SANY Equipment Integration (Native)</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">电动卡车/柴油发电机/换电站</span><span class="lang-en">EV Truck / Diesel Generator / Swap Station</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">All SANY equipment is pre-installed with T-Box or controllers, enabling seamless access to high-quality, comprehensive data via standard APIs and MQTT.</span><span class="lang-cn">所有三一设备均预装T-Box或控制器，通过标准API和消息队列实现高质量、全维度数据的无缝接入。</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">非三一设备集成 (兼容)</span><span class="lang-en">Non-SANY Equipment Integration (Compatible)</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">云端API对接 (AEMP 2.0)</span><span class="lang-en">Cloud API Integration (AEMP 2.0)</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Prioritize non-invasive, low-cost integration with third-party equipment compliant with the AEMP 2.0 standard via cloud API.</span><span class="lang-cn">优先通过云端API对接符合AEMP 2.0标准的第三方品牌设备，实现无创、低成本的对接。</span></p>
+                                        </div>
+                                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">硬件加装</span><span class="lang-en">Hardware Retrofitting</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Provide T-Box and sensor retrofitting services for older equipment that does not support standard APIs, bringing them under unified management.</span><span class="lang-cn">为不支持标准API的老旧设备提供T-Box和传感器加装服务，实现统一纳管。</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">传感器体系</span><span class="lang-en">Sensor System</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">T-Box (车载智能终端)</span><span class="lang-en">T-Box (Telematics Box)</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">As the in-vehicle data gateway, the T-Box is the nervous system of data collection, responsible for aggregating, processing, and transmitting data.</span><span class="lang-cn">作为车载数据网关，T-Box是数据采集的神经中枢，负责汇聚、处理和远传来自车辆ECU及外接传感器的数据。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">TPMS传感器</span><span class="lang-en">TPMS Sensor</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Monitors tire pressure and temperature in real-time to prevent accidents and optimize tire life.</span><span class="lang-cn">实时监测轮胎的内部压力和温度，预防安全事故并优化轮胎寿命。</span></p>
+                                        </div>
+                                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">燃油/油位传感器</span><span class="lang-en">Fuel/Level Sensor</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Provides precise measurement of fuel levels for energy management and theft prevention.</span><span class="lang-cn">精确测量柴油卡车或油罐的实时油位，为能源管理和防盗提供核心数据。</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- 系统集成 -->
+                        <div id="integration" class="mb-16 scroll-mt-24">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 pb-4 border-b-2 border-purple-500">
+                                <span class="lang-cn">系统集成</span><span class="lang-en">System Integration</span>
+                            </h2>
+                             <div class="space-y-12">
+                                 <div>
+                                    <h3 class="text-2xl font-semibold text-gray-700 mb-6"><span class="lang-cn">外部系统对接</span><span class="lang-en">External System Integration</span></h3>
+                                    <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                       <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                           <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">地磅系统对接</span><span class="lang-en">Weighbridge System Integration</span></h4>
+                                           <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Integrate with the client's existing weighbridge system to automatically obtain vehicle weight data.</span><span class="lang-cn">对接客户现有的地磅系统，自动获取车辆称重数据。</span></p>
+                                       </div>
+                                       <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                           <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">ERP系统对接</span><span class="lang-en">ERP System Integration</span></h4>
+                                           <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Two-way interaction with the client's ERP system to close the loop on production planning and cost data.</span><span class="lang-cn">与客户ERP系统进行双向交互，闭环生产计划与成本数据。</span></p>
+                                       </div>
+                                       <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                           <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">驳船物流系统对接</span><span class="lang-en">Barge Logistics System Integration</span></h4>
+                                           <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Integrate with the barge logistics system to obtain vessel schedule data for better coordination.</span><span class="lang-cn">对接驳船物流系统，获取船期计划数据以实现更好的协同。</span></p>
+                                       </div>
+                                       <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                                            <h4 class="font-bold text-lg text-gray-900 mb-3"><span class="lang-cn">采购/库存系统对接</span><span class="lang-en">Procurement/Inventory System Integration</span></h4>
+                                            <p class="text-gray-600"><b class="lang-en">Desc: </b><span class="lang-en">Link with spare parts inventory and procurement systems to automate purchases based on maintenance plans and real-time stock.</span><span class="lang-cn">与备件库存和采购系统联动，根据维护计划和实时库存自动触发采购。</span></p>
+                                        </div>
+                                   </div>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 IROOTECH TECHNOLOGY Co.,Ltd All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">
+                <span class="lang-cn">数字矿山管控塔解决方案</span>
+                <span class="lang-en">Digital Mine Control Tower Solution</span>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 

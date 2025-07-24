@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBL Digital Mine Control Tower Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <style>
+        [lang="en"] .lang-cn,
+        [lang="cn"] .lang-en {
+            display: none;
+        }
+        .section-title {
+            @apply text-3xl font-bold text-gray-800;
+        }
+        .section-subtitle {
+            @apply text-xl text-gray-500;
+        }
+        .hero-bg {
+            background-image: url('矿山背景图.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(30, 41, 59, 0.50); /* 深色遮罩加强 */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        @media (min-width: 768px) {
+            .hero-content {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
+        .hero-title {
+            color: #fff;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            font-size: clamp(2.5rem,7vw,4rem);
+            letter-spacing: 0.02em;
+            font-weight: 800;
+        }
+        .hero-subtitle {
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        /* --- 方案四 v2：联动高亮样式 --- */
+        .pain-point-card, .scenario-card {
+            transition: all 0.25s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        .pain-point-icon-wrapper {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+        }
+
+        .scenario-card .pain-point-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            font-weight: 500;
+            margin: 4px 4px 0 0;
+            color: #4b5563; /* gray-600 */
+            background-color: #f3f4f6; /* gray-100 */
+            border: 1px solid #d1d5db; /* gray-300 */
+            cursor: default;
+        }
+
+        .pain-point-card.highlight, .scenario-card.highlight {
+            border-color: #38bdf8 !important; /* sky-400 */
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgb(56 189 248 / 0.2), 0 4px 6px -4px rgb(56 189 248 / 0.2);
+        }
+
+        /* --- 方案一：两栏布局样式 --- */
+        @media (min-width: 1024px) {
+            .two-column-layout {
+                display: grid;
+                grid-template-columns: 4fr 8fr; /* 1/3 for pain points, 2/3 for scenarios */
+                gap: 3rem;
+            }
+            .pain-point-list-compact {
+                position: sticky;
+                top: 100px; /* Adjust based on header height */
+                align-self: start;
+            }
+        }
+        .pain-point-item-compact {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            border: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .pain-point-item-compact .pain-point-icon-wrapper {
+             width: 32px;
+             height: 32px;
+        }
+        .pain-point-item-compact .pain-point-title {
+            font-weight: 600;
+        }
+        .pain-point-item-compact.highlight {
+            background-color: #e0f2fe !important; /* sky-100 */
+            border-color: #38bdf8 !important; /* sky-400 */
+            transform: scale(1.03);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans" lang="cn">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="../03_素材/图标/树根互联logo-EN.png" alt="Logo" class="h-8 mr-4">
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#business" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">业务场景</span>
+                    <span class="lang-en">Business Scenario</span>
+                </a>
+                <a href="#design" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">架构设计</span>
+                    <span class="lang-en">Solution Architecture</span>
+                </a>
+                <a href="#architecture" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">方案详解</span>
+                    <span class="lang-en">Solution Design</span>
+                </a>
+                <a href="#roadmap" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">实施路径</span>
+                    <span class="lang-en">Roadmap</span>
+                </a>
+                <a href="#case-study" class="text-gray-600 hover:text-blue-600">
+                    <span class="lang-cn">参考案例</span>
+                    <span class="lang-en">Case Study</span>
+                </a>
+            </div>
+            <div class="flex items-center">
+                <button id="lang-switcher" class="text-sm font-semibold bg-gray-200 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-300">
+                    <span class="lang-cn">EN</span>
+                    <span class="lang-en">中</span>
+                </button>
+                <button class="md:hidden ml-4" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#business" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">业务场景</span><span class="lang-en">Business Scenario</span></a>
+            <a href="#design" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">架构设计</span><span class="lang-en">Architecture</span></a>
+            <a href="#architecture" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">方案详解</span><span class="lang-en">Solution Design</span></a>
+            <a href="#roadmap" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">实施路径</span><span class="lang-en">Roadmap</span></a>
+            <a href="#case-study" class="block py-2 text-gray-600 hover:text-blue-600"><span class="lang-cn">参考案例</span><span class="lang-en">Case Study</span></a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-bg bg-gray-50">
+            <div class="container mx-auto px-6 text-center hero-content flex flex-col items-center justify-center">
+                <h1 class="hero-title">
+                    <span class="lang-cn">MBL 数字矿山管控塔解决方案</span>
+                    <span class="lang-en">MBL Digital Mine Control Tower Solution</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-2xl font-medium hero-subtitle">
+                    <span class="lang-cn">以前所未有的视角，掌控您的矿山运营</span>
+                    <span class="lang-en">Master Your Mining Operations with Unprecedented Insight</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Part 1: Business Scenario -->
+        <section id="business" class="bg-white">
+            <div class="container mx-auto px-6 py-16">
+                <div class="flex items-center mb-16">
+                    <div class="text-8xl font-black text-gray-100 mr-8 select-none">01</div>
+                    <div>
+                        <h2 class="section-title"><span class="lang-cn">第一部分：业务场景</span><span class="lang-en">Part 1: Business Scenario</span></h2>
+                        <p class="section-subtitle"><span class="lang-cn">洞察核心流程，直面业务痛点</span><span class="lang-en">Insight into core processes and direct confrontation of business pain points</span></p>
+                    </div>
+                </div>
+
+                <div class="two-column-layout">
+                    <!-- Left Column: Pain Points -->
+                    <div class="pain-point-list-compact space-y-3 mb-16 lg:mb-0">
+                        <h3 class="text-xl font-semibold mb-4 text-center lg:text-left"><span class="lang-cn">业务痛点清单</span><span class="lang-en">Pain Point List</span></h3>
+                        
+                        <div id="pain-point-1" data-targets="scenario-b,scenario-e" data-title-cn="数字化管理基础薄弱" data-title-en="Weak Digital Foundation" class="pain-point-item-compact" title="严重依赖人工管理和纸质记账，缺乏基础数字化系统支撑，数据收集原始、质量差。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">数字化管理基础薄弱</span><span class="lang-en">Weak Digital Foundation</span></span>
+                        </div>
+
+                        <div id="pain-point-2" data-targets="scenario-a" data-title-cn="运输调度困难" data-title-en="Transport Dispatch Difficulty" class="pain-point-item-compact" title="缺乏智能调度系统，无法实时定位跟踪70台运输设备，导致资源利用率低，等待时间长。">
+                             <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg></div>
+                             <span class="pain-point-title"><span class="lang-cn">运输调度困难</span><span class="lang-en">Transport Dispatch Difficulty</span></span>
+                        </div>
+
+                        <div id="pain-point-3" data-targets="scenario-c,scenario-e" data-title-cn="设备健康管理缺失" data-title-en="Lack of Equipment Health Management" class="pain-point-item-compact" title="维护多为被动响应，缺乏系统性的设备健康监测（特别是轮胎、发电机），导致计划外停机。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 00-4.773-4.773L6.75 11.42m5.877 5.877l-5.877-5.877m0 0a3.375 3.375 0 00-4.773 4.773l2.472 2.472" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">设备健康管理缺失</span><span class="lang-en">Lack of Equipment Health Management</span></span>
+                        </div>
+                         <div id="pain-point-4" data-targets="scenario-d" data-title-cn="能源管理不透明" data-title-en="Opaque Energy Management" class="pain-point-item-compact" title="柴油和电力的采购、分发、消耗全流程管理缺失，无法精细化监控和分析能源成本。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">能源管理不透明</span><span class="lang-en">Opaque Energy Management</span></span>
+                        </div>
+
+                        <div id="pain-point-5" data-targets="scenario-a,scenario-b" data-title-cn="混合车队管理复杂" data-title-en="Complex Mixed-Fleet Management" class="pain-point-item-compact" title="同时运营三一电动重卡和传统燃油重卡，缺乏统一平台进行优化调度和管理。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 3.124L18 12m-12 0h12" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">混合车队管理复杂</span><span class="lang-en">Complex Mixed-Fleet Management</span></span>
+                        </div>
+
+                         <div id="pain-point-6" data-targets="scenario-f" data-title-cn="安全管理系统缺乏" data-title-en="Lack of Safety Management System" class="pain-point-item-compact" title="无法有效监控司机危险驾驶行为和设备安全状态，缺乏安全预警和闭环管理体系。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">安全管理系统缺乏</span><span class="lang-en">Lack of Safety Management System</span></span>
+                        </div>
+
+                         <div id="pain-point-7" data-targets="scenario-a,scenario-c,scenario-d" data-title-cn="成本核算不精准" data-title-en="Inaccurate Cost Accounting" class="pain-point-item-compact" title="难以精确计算单位运输成本，无法清晰分析成本构成，决策缺乏成本数据支持。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">成本核算不精准</span><span class="lang-en">Inaccurate Cost Accounting</span></span>
+                        </div>
+
+                        <div id="pain-point-8" data-targets="scenario-a" data-title-cn="决策缺乏数据支持" data-title-en="Lack of Data for Decisions" class="pain-point-item-compact" title="管理层难以获得及时、准确的运营数据，决策严重依赖经验，缺乏可视化管理驾驶舱。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 3v18h18V3H3.75zm12.75 12.75L12 12l-4.25 4.25m8.5 0L12 12l4.25 4.25M3.75 8.25h16.5" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">决策缺乏数据支持</span><span class="lang-en">Lack of Data for Decisions</span></span>
+                        </div>
+
+                         <div id="pain-point-9" data-targets="scenario-b,scenario-e" data-title-cn="数据孤岛问题严重" data-title-en="Severe Data Silo Problem" class="pain-point-item-compact" title="各环节数据分散，系统间信息不流通，导致重复采集、数据不一致，无法进行全局分析。">
+                            <div class="pain-point-icon-wrapper bg-red-100 text-red-600"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m16.5 0c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125h17.25z" /></svg></div>
+                            <span class="pain-point-title"><span class="lang-cn">数据孤岛问题严重</span><span class="lang-en">Severe Data Silo Problem</span></span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Scenarios -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-center lg:text-left mb-4"><span class="lang-cn">核心业务场景</span><span class="lang-en">Core Business Scenarios</span></h3>
+                        <p class="text-center lg:text-left text-gray-500 mb-10 max-w-3xl mx-auto lg:mx-0">
+                            <span class="lang-cn">将鼠标悬停于任一元素，查看它们之间的逻辑关联。痛点的详细描述会在鼠标悬停时显示。</span>
+                            <span class="lang-en">Hover over any element to see the logical connection. Detailed descriptions for pain points appear on hover.</span>
+                        </p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div id="scenario-a" data-targets="pain-point-2,pain-point-5,pain-point-7,pain-point-8" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">Hauling智能调度</span><span class="lang-en">Intelligent Hauling Dispatch</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 实现从订单到执行的端到端流程优化，自动分配车辆、司机和最优路线。</span><span class="lang-en"><b>Objective:</b> Achieve end-to-end process optimization from order to execution, automatically assigning vehicles, drivers, and optimal routes.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                            <div id="scenario-b" data-targets="pain-point-1,pain-point-5,pain-point-9" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">车队管理</span><span class="lang-en">Fleet Management</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 对混合车队进行全生命周期管理，为每台车建立数字档案。</span><span class="lang-en"><b>Objective:</b> Manage the entire lifecycle of the mixed fleet, creating a digital profile for each vehicle.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                            <div id="scenario-c" data-targets="pain-point-3,pain-point-7" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">轮胎管理</span><span class="lang-en">Tire Management</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 对轮胎进行全生命周期数字化管理，优化成本并提升安全。</span><span class="lang-en"><b>Objective:</b> Implement digital lifecycle management for tires to optimize costs and enhance safety.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                            <div id="scenario-d" data-targets="pain-point-4,pain-point-7" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">能源管理</span><span class="lang-en">Energy Management</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 对柴油、电力等能源进行全流程监管，提供能耗分析与优化建议。</span><span class="lang-en"><b>Objective:</b> Supervise the entire energy process, providing consumption analysis and optimization suggestions.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                            <div id="scenario-e" data-targets="pain-point-1,pain-point-3,pain-point-9" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">车辆维护数字化</span><span class="lang-en">Digital Vehicle Maintenance</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 聚焦于设备维修工单的数字化闭环管理，提升维修效率与数据透明度。</span><span class="lang-en"><b>Objective:</b> Focus on the closed-loop digital management of repair work orders to improve efficiency and data transparency.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                            <div id="scenario-f" data-targets="pain-point-6" class="scenario-card bg-white p-6 rounded-lg border border-gray-200 flex flex-col"><div class="flex-grow"><h4 class="font-bold text-lg mb-2"><span class="lang-cn">安全管理</span><span class="lang-en">Safety Management</span></h4><p class="text-gray-600"><span class="lang-cn"><b>目标:</b> 建立全面的安全预警和分析机制。</span><span class="lang-en"><b>Objective:</b> Establish a comprehensive safety alert and analysis mechanism.</span></p></div><div class="mt-4 pt-4 border-t"><h5 class="text-xs text-gray-400 mb-2 uppercase font-semibold tracking-wider"><span class="lang-cn">解决痛点</span><span class="lang-en">Solves Pain Points</span></h5><div class="flex flex-wrap scenario-tags"></div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2: Architecture -->
+        <section id="design" class="bg-gray-50">
+            <div class="container mx-auto px-6 py-16">
+                <div class="flex items-center mb-16">
+                    <div class="text-8xl font-black text-gray-100 mr-8 select-none">02</div>
+                    <div>
+                        <h2 class="section-title"><span class="lang-cn">第二部分：架构设计</span><span class="lang-en">Part 2: Architecture</span></h2>
+                        <p class="section-subtitle"><span class="lang-cn">场景驱动，架构先行</span><span class="lang-en">Scenario-driven, architecture-first</span></p>
+                    </div>
+                </div>
+
+                <div class="mb-20">
+                    <h3 class="text-2xl font-semibold text-center mb-8"><span class="lang-cn">业务场景到解决方案的映射</span><span class="lang-en">Mapping Business Scenarios to Solutions</span></h3>
+                    <div class="max-w-5xl mx-auto">
+                        <p class="text-center text-gray-600 mb-4">
+                            <span class="lang-cn">为确保解决方案与业务需求紧密对齐，我们采用场景驱动的设计方法。每个核心业务场景都被系统性地分解，并映射到具体的解决方案要素上。</span>
+                            <span class="lang-en">To ensure the solution is closely aligned with business needs, we adopt a scenario-driven design methodology. Each core business scenario is systematically broken down and mapped to specific solution elements.</span>
+                        </p>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg mb-6">
+                            <p class="font-mono text-gray-700">
+                                <span class="lang-cn">业务场景 ➞ 用户角色 ➞ 业务流程 ➞ 系统功能 ➞ 数据需求 ➞ 技术组件 ➞ 价值指标</span>
+                                <span class="lang-en">Scenario ➞ Roles ➞ Processes ➞ Functions ➞ Data ➞ Tech ➞ Value</span>
+                            </p>
+                        </div>
+                        <div class="bg-white border rounded-lg p-6">
+                            <h4 class="font-bold text-lg mb-3"><span class="lang-cn">核心场景映射摘要: `Hauling智能调度`</span><span class="lang-en">Core Scenario Mapping Summary: `Intelligent Hauling Dispatch`</span></h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li><strong class="text-gray-800"><span class="lang-cn">核心用户:</span><span class="lang-en">Core Users:</span></strong> <span class="lang-cn">运营经理、调度员、司机。</span><span class="lang-en">Operations Manager, Dispatcher, Driver.</span></li>
+                                <li><strong class="text-gray-800"><span class="lang-cn">核心流程:</span><span class="lang-en">Core Processes:</span></strong> <span class="lang-cn">覆盖从"销售订单管理"到"绩效评估"的完整闭环。</span><span class="lang-en">Covers the complete closed loop from "Sales Order Management" to "Performance Evaluation".</span></li>
+                                <li><strong class="text-gray-800"><span class="lang-cn">核心功能:</span><span class="lang-en">Core Functions:</span></strong> <span class="lang-cn">任务规划与优化、资源分配、执行监控。</span><span class="lang-en">Task planning and optimization, resource allocation, execution monitoring.</span></li>
+                                <li><strong class="text-gray-800"><span class="lang-cn">核心价值:</span><span class="lang-en">Core Value:</span></strong> <span class="lang-cn">提升车辆利用率、减少等待时间、降低单位运输成本。</span><span class="lang-en">Improve vehicle utilization, reduce waiting times, lower unit transport costs.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-semibold text-center mb-16"><span class="lang-cn">解决方案整体架构</span><span class="lang-en">Overall Solution Architecture</span></h3>
+                
+                <div id="architecture-accordion" class="max-w-5xl mx-auto">
+                    <!-- L1: Control Tower - Frontend -->
+                    <h2 id="accordion-heading-1">
+                        <button type="button" class="flex items-center justify-between w-full p-6 font-medium rtl:text-right text-blue-800 bg-blue-100 border border-b-0 border-blue-200 rounded-t-xl hover:bg-blue-200 gap-3" data-accordion-target="#accordion-body-1" aria-expanded="true" aria-controls="accordion-body-1">
+                            <div class="text-left">
+                                <span class="text-xl font-bold"><span class="lang-cn">L1: 控制塔层-前端</span><span class="lang-en">L1: Control Tower - Frontend</span></span>
+                                <p class="text-blue-700 font-normal"><span class="lang-cn">"智能大脑"和决策中枢</span><span class="lang-en">The "intelligent brain" and decision-making hub</span></p>
+                            </div>
+                            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-body-1" class="hidden" aria-labelledby="accordion-heading-1">
+                        <div class="p-5 border border-b-0 border-gray-200 bg-white">
+                            <p class="mb-4 text-gray-600"><span class="lang-cn">为管理层和业务人员提供直观的数据可视化界面，包含三大核心视图。</span><span class="lang-en">Provides intuitive data visualization interfaces for management and operational staff, featuring three core views.</span></p>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-blue-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">综合驾驶舱</span><span class="lang-en">Dashboard</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-blue-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"></path></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">流程视图</span><span class="lang-en">Process View</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-blue-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17.25v1.007a3 3 0 01-.375 .5-1.5 1.5 0 01-2.25 0 .5 .5 0 00-.75 0A1.5 1.5 0 014.5 18v-1.007a1.5 1.5 0 01.375-.992l.499-.666a1.5 1.5 0 012.25 0l.499.666a1.5 1.5 0 01.375.992zM9 17.25v-1.007a3 3 0 00-.375-.5-1.5 1.5 0 00-2.25 0 .5 .5 0 01-.75 0A1.5 1.5 0 004.5 18v1.007a1.5 1.5 0 00.375.992l.499.666a1.5 1.5 0 002.25 0l.499-.666a1.5 1.5 0 00.375-.992zM18 17.25v-1.007a3 3 0 00-.375-.5-1.5 1.5 0 00-2.25 0 .5 .5 0 01-.75 0A1.5 1.5 0 0012.75 18v1.007a1.5 1.5 0 00.375.992l.499.666a1.5 1.5 0 002.25 0l.499-.666a1.5 1.5 0 00.375-.992zM18 17.25v1.007a3 3 0 01-.375 .5-1.5 1.5 0 01-2.25 0 .5 .5 0 00-.75 0A1.5 1.5 0 0112.75 18v-1.007a1.5 1.5 0 01.375-.992l.499-.666a1.5 1.5 0 012.25 0l.499.666a1.5 1.5 0 01.375.992zM13.5 12v-1.007a3 3 0 00-.375-.5-1.5 1.5 0 00-2.25 0 .5 .5 0 01-.75 0A1.5 1.5 0 009 12v-1.007a1.5 1.5 0 00.375-.992l.499-.666a1.5 1.5 0 002.25 0l.499.666A1.5 1.5 0 0013.5 12z"></path></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">资源视图</span><span class="lang-en">Resource View</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-blue-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">告警与事件</span><span class="lang-en">Alerts & Events</span></h5></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- L2: Control Tower - Backend -->
+                    <h2 id="accordion-heading-2">
+                        <button type="button" class="flex items-center justify-between w-full p-6 font-medium rtl:text-right text-green-800 bg-green-100 border border-b-0 border-gray-200 hover:bg-green-200 gap-3" data-accordion-target="#accordion-body-2" aria-expanded="false" aria-controls="accordion-body-2">
+                            <div class="text-left">
+                                <span class="text-xl font-bold"><span class="lang-cn">L2: 控制塔层-后端</span><span class="lang-en">L2: Control Tower - Backend</span></span>
+                                <p class="text-green-700 font-normal"><span class="lang-cn">数据处理与计算能力的提供者</span><span class="lang-en">Provider of data processing and computation</span></p>
+                            </div>
+                            <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-body-2" class="hidden" aria-labelledby="accordion-heading-2">
+                        <div class="p-5 border border-b-0 border-gray-200 bg-white">
+                            <p class="mb-4 text-gray-600"><span class="lang-cn">连接前端、应用层和底层数据的核心枢纽。它负责数据的集成、计算、存储和服务。</span><span class="lang-en">The core hub connecting the frontend, application layer, and underlying data. It handles data integration, computation, storage, and services.</span></p>
+                             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-green-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">API服务</span><span class="lang-en">API Services</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-green-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7.5l3 4.5m0 0l3-4.5M12 12v5.25M15 12H9m6 3H9m12-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">计算引擎</span><span class="lang-en">Calculation Engine</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-green-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">数据集成</span><span class="lang-en">Data Integration</span></h5></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- L3: Application Layer -->
+                     <h2 id="accordion-heading-3">
+                        <button type="button" class="flex items-center justify-between w-full p-6 font-medium rtl:text-right text-yellow-800 bg-yellow-100 border border-b-0 border-gray-200 hover:bg-yellow-200 gap-3" data-accordion-target="#accordion-body-3" aria-expanded="false" aria-controls="accordion-body-3">
+                            <div class="text-left">
+                                <span class="text-xl font-bold"><span class="lang-cn">L3: 应用层</span><span class="lang-en">L3: Application Layer</span></span>
+                                <p class="text-yellow-700 font-normal"><span class="lang-cn">核心业务功能的实现者</span><span class="lang-en">Implementer of core business functions</span></p>
+                            </div>
+                            <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-body-3" class="hidden" aria-labelledby="accordion-heading-3">
+                        <div class="p-5 border border-b-0 border-gray-200 bg-white">
+                            <p class="mb-4 text-gray-600"><span class="lang-cn">执行核心业务逻辑的载体，将底层数据转化为具体业务操作和管理流程。</span><span class="lang-en">The carrier for executing core business logic, transforming underlying device data into specific business operations and management processes.</span></p>
+                             <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">智能调度</span><span class="lang-en">Intelligent Hauling</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 00-4.773-4.773L6.75 11.42m5.877 5.877l-5.877-5.877m0 0a3.375 3.375 0 00-4.773 4.773l2.472 2.472" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">车队管理</span><span class="lang-en">Fleet Management</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.91 15.91a9.043 9.043 0 01-1.282.992 9.002 9.002 0 01-5.236 0 9.043 9.043 0 01-1.282-.992m7.8-7.8a9.043 9.043 0 011.282.992 9.002 9.002 0 015.236 0 9.043 9.043 0 011.282-.992M3.75 12h.008v.008H3.75V12zm16.5 0h.008v.008h-.008V12z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">轮胎管理</span><span class="lang-en">Tire Management</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">能源管理</span><span class="lang-en">Energy Management</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">数字维保</span><span class="lang-en">Digital Maintenance</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">安全管理</span><span class="lang-en">Safety Management</span></h5></div>
+                                <div class="p-4 bg-gray-50 rounded-lg border text-center"><div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-12 h-12 mb-3"><svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.67c.12-.34-.026-.723-.386-.92s-.823-.075-1.156.223c-.333.298-.444.75-.27 1.116A4.125 4.125 0 0015 19.128z" /></svg></div><h5 class="font-semibold text-gray-800"><span class="lang-cn">司机管理</span><span class="lang-en">Driver Mgmt</span></h5></div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- L4: Device Layer -->
+                     <h2 id="accordion-heading-4">
+                        <button type="button" class="flex items-center justify-between w-full p-6 font-medium rtl:text-right text-red-800 bg-red-100 border border-b-0 border-gray-200 hover:bg-red-200 gap-3" data-accordion-target="#accordion-body-4" aria-expanded="false" aria-controls="accordion-body-4">
+                            <div class="text-left">
+                                <span class="text-xl font-bold"><span class="lang-cn">L4: 设备层</span><span class="lang-en">L4: Device Layer</span></span>
+                                <p class="text-red-700 font-normal"><span class="lang-cn">系统数据的核心来源</span><span class="lang-en">The core source of system data</span></p>
+                            </div>
+                            <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-body-4" class="hidden" aria-labelledby="accordion-heading-4">
+                        <div class="p-5 border border-b-0 border-gray-200 bg-white">
+                            <p class="mb-4 text-gray-600"><span class="lang-cn">连接物理世界与数字世界的桥梁，负责从现场各类动静态设备上采集原始的运行、状态和环境数据。</span><span class="lang-en">The bridge between the physical and digital worlds, responsible for collecting raw data from various mobile and static assets.</span></p>
+                             <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-bold text-lg mb-2"><span class="lang-cn">三一设备</span><span class="lang-en">SANY Equipment</span></h5>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"><span class="lang-cn">电动重卡</span><span class="lang-en">Electric Heavy Truck</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"><span class="lang-cn">换电站</span><span class="lang-en">Battery Swap Station</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"><span class="lang-cn">发电机</span><span class="lang-en">Diesel Generator</span></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-lg mb-2"><span class="lang-cn">非三一设备</span><span class="lang-en">Non-SANY Equipment</span></h5>
+                                     <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"><span class="lang-cn">矿卡</span><span class="lang-en">Mining Equipment</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20"><span class="lang-cn">第三方车辆</span><span class="lang-en">Third-party Vehicles</span></span>
+                                    </div>
+                                </div>
+                                <div class="md:col-span-2 mt-2">
+                                     <h5 class="font-bold text-lg mb-2"><span class="lang-cn">核心传感器</span><span class="lang-en">Core Sensors</span></h5>
+                                     <div class="flex flex-wrap gap-2">
+                                        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">T-Box / 数据网关</span><span class="lang-en">T-Box / Gateway</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">TPMS (胎压)</span><span class="lang-en">TPMS</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">油位传感器</span><span class="lang-en">Fuel Sensor</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">摄像头</span><span class="lang-en">Camera</span></span>
+                                        <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">GPS模块</span><span class="lang-en">GPS Module</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- L5: System Integration -->
+                     <h2 id="accordion-heading-5">
+                        <button type="button" class="flex items-center justify-between w-full p-6 font-medium rtl:text-right text-gray-800 bg-gray-100 border border-gray-200 hover:bg-gray-200 gap-3" data-accordion-target="#accordion-body-5" aria-expanded="false" aria-controls="accordion-body-5">
+                            <div class="text-left">
+                                <span class="text-xl font-bold"><span class="lang-cn">L5: 系统集成</span><span class="lang-en">L5: System Integration</span></span>
+                                <p class="text-gray-700 font-normal"><span class="lang-cn">与外部IT系统连接的桥梁</span><span class="lang-en">The bridge to external IT systems</span></p>
+                            </div>
+                            <svg data-accordion-icon class="w-3 h-3 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/></svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-body-5" class="hidden" aria-labelledby="accordion-heading-5">
+                        <div class="p-5 border border-t-0 border-gray-200 bg-white">
+                            <p class="mb-4 text-gray-600"><span class="lang-cn">打通客户现有的信息孤岛，实现业务流程的端到端自动化和数据驱动。</span><span class="lang-en">Breaks down existing information silos to achieve end-to-end automation and data-driven processes.</span></p>
+                            <div class="flex flex-wrap gap-4 justify-center">
+                                <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-red-500 min-w-[150px] text-center"><span class="font-semibold lang-cn">地磅系统</span><span class="font-semibold lang-en">Weighbridge</span><br/><span class="text-sm text-red-600 lang-cn">(必须)</span><span class="text-sm text-red-600 lang-en">(Mandatory)</span></div>
+                                <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500 min-w-[150px] text-center"><span class="font-semibold lang-cn">ERP 系统</span><span class="font-semibold lang-en">ERP System</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500 min-w-[150px] text-center"><span class="font-semibold lang-cn">驳船物流系统</span><span class="font-semibold lang-en">Barge Logistics</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500 min-w-[150px] text-center"><span class="font-semibold lang-cn">采购/库存系统</span><span class="font-semibold lang-en">Procurement/Inventory</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-gray-400 min-w-[150px] text-center"><span class="font-semibold lang-cn">其他系统</span><span class="font-semibold lang-en">Other Systems</span><br/><span class="text-sm text-gray-500 lang-cn">(可选)</span><span class="text-sm text-gray-500 lang-en">(Optional)</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="architecture_diagram.html" target="_blank" class="inline-block bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <span class="lang-cn">查看完整交互式架构蓝图</span>
+                        <span class="lang-en">View Full Interactive Blueprint</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3: Solution Design -->
+        <section id="architecture" class="bg-white">
+            <div class="container mx-auto px-6 py-16">
+                <div class="flex items-center mb-16">
+                    <div class="text-8xl font-black text-gray-100 mr-8 select-none">03</div>
+                    <div>
+                        <h2 class="section-title"><span class="lang-cn">第三部分：方案详解</span><span class="lang-en">Part 3: Solution Design</span></h2>
+                        <p class="section-subtitle"><span class="lang-cn">深入探索每一层的核心功能与设计</span><span class="lang-en">A deep dive into the core functions and design of each layer</span></p>
+                    </div>
+                </div>
+
+                <div class="space-y-16">
+
+                    <!-- Layer 1: Frontend -->
+                    <div id="layer-1">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 font-bold text-xl">L1</span>
+                            <div>
+                                <h3 class="text-3xl font-bold text-blue-800"><span class="lang-cn">控制塔层 - 前端</span><span class="lang-en">Control Tower - Frontend</span></h3>
+                                <p class="mt-2 text-gray-600"><span class="lang-cn">作为"智能大脑"和决策中枢，前端为不同角色的用户提供直观、高效、美观的数据可视化界面。</span><span class="lang-en">As the "intelligent brain" and decision hub, the frontend provides intuitive, efficient, and aesthetic data visualization interfaces for different user roles.</span></p>
+                                <a href="application-details.html#frontend" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors mt-4">
+                                    <span class="lang-cn">查看该层详细功能 &rarr;</span>
+                                    <span class="lang-en">View Detailed Functions for This Layer &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6 pl-4 md:pl-16">
+                            <div class="p-5 bg-gray-50 rounded-lg border">
+                                <div class="flex items-center text-blue-700 mb-2">
+                                    <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    <h5 class="text-xl font-semibold"><span class="lang-cn">综合驾驶舱</span><span class="lang-en">Dashboard</span></h5>
+                                </div>
+                                <p class="text-gray-700"><span class="lang-cn"><b>设计目标:</b> 提供一站式全局运营视图，通过"一屏全览"与"灵活下钻"，赋能管理者实时掌控核心KPI。</span><span class="lang-en"><b>Goal:</b> Provide a one-stop global operational view, enabling managers to control core KPIs in real-time through a single-screen overview and flexible drill-down.</span></p>
+                            </div>
+                            <div class="p-5 bg-gray-50 rounded-lg border">
+                                <div class="flex items-center text-blue-700 mb-2">
+                                    <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+                                    <h5 class="text-xl font-semibold"><span class="lang-cn">流程视图</span><span class="lang-en">Process View</span></h5>
+                                </div>
+                                <p class="text-gray-700"><span class="lang-cn"><b>设计目标:</b> 专注于Hauling作业的端到端可视化，通过泳道图、甘特图等方式，主动"识别流程瓶颈"。</span><span class="lang-en"><b>Goal:</b> Focus on end-to-end visualization of Hauling operations to proactively "identify process bottlenecks" using swimlanes, Gantt charts, etc.</span></p>
+                            </div>
+                            <div class="p-5 bg-gray-50 rounded-lg border">
+                                <div class="flex items-center text-blue-700 mb-2">
+                                     <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.75 3v18h18V3H3.75zM12 9v6m-3-3h6"></path></svg>
+                                    <h5 class="text-xl font-semibold"><span class="lang-cn">资源视图</span><span class="lang-en">Resource View</span></h5>
+                                </div>
+                                <p class="text-gray-700"><span class="lang-cn"><b>设计目标:</b> 提供以资产为核心的精细化管理视角，为每台设备建立360°数字档案，实现"全生命周期管理"。</span><span class="lang-en"><b>Goal:</b> Provide an asset-centric view for fine-grained management, creating a 360° digital profile for each asset to enable "full lifecycle management."</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Divider -->
+                    <hr/>
+
+                    <!-- Layer 2: Backend -->
+                    <div id="layer-2">
+                         <div class="flex items-start gap-4 mb-6">
+                            <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-green-100 text-green-600 font-bold text-xl">L2</span>
+                            <div>
+                                <h3 class="text-3xl font-bold text-green-800"><span class="lang-cn">控制塔层 - 后端</span><span class="lang-en">Control Tower - Backend</span></h3>
+                                <p class="mt-2 text-gray-600"><span class="lang-cn">作为系统的"数据中台"，后端是连接前端、应用和数据的核心枢纽。它负责数据的集成、计算、存储和服务，为上层应用提供稳定、可靠的数据能力。</span><span class="lang-en">As the system's "data middle platform," the backend is the core hub connecting the frontend, applications, and data. It handles data integration, computation, storage, and services, providing stable and reliable data capabilities for upper-layer applications.</span></p>
+                                <a href="application-details.html#backend" class="inline-flex items-center font-semibold text-green-600 hover:text-green-800 transition-colors mt-4">
+                                    <span class="lang-cn">查看该层详细功能 &rarr;</span>
+                                    <span class="lang-en">View Detailed Functions for This Layer &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pl-4 md:pl-16 space-y-8">
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="p-5 bg-green-50 rounded-lg border border-green-200">
+                                    <div class="flex items-center text-green-700 mb-2">
+                                        <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path></svg>
+                                        <h5 class="text-xl font-semibold"><span class="lang-cn">数据集成</span><span class="lang-en">Data Integration</span></h5>
+                                    </div>
+                                    <p class="text-gray-700"><span class="lang-cn">通过API、消息队列、ETL等方式，汇聚多源异构数据，形成统一、标准的数据基础。</span><span class="lang-en">Aggregates multi-source, heterogeneous data via APIs, message queues, and ETL to form a unified data foundation.</span></p>
+                                </div>
+                                <div class="p-5 bg-green-50 rounded-lg border border-green-200">
+                                    <div class="flex items-center text-green-700 mb-2">
+                                        <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7.5l3 4.5m0 0l3-4.5M12 12v5.25M15 12H9m6 3H9m12-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        <h5 class="text-xl font-semibold"><span class="lang-cn">计算引擎</span><span class="lang-en">Calculation Engine</span></h5>
+                                    </div>
+                                    <p class="text-gray-700"><span class="lang-cn">支持实时与批量计算，将原始数据加工成KPI指标，并能根据规则生成实时告警。</span><span class="lang-en">Supports real-time and batch calculations to process raw data into business KPIs and generate real-time alerts based on rules.</span></p>
+                                </div>
+                                <div class="p-5 bg-green-50 rounded-lg border border-green-200">
+                                    <div class="flex items-center text-green-700 mb-2">
+                                        <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path></svg>
+                                        <h5 class="text-xl font-semibold"><span class="lang-cn">API 服务</span><span class="lang-en">API Services</span></h5>
+                                    </div>
+                                    <p class="text-gray-700"><span class="lang-cn">通过RESTful和WebSocket接口，为前端提供稳定、高效的数据出口，实现前后端分离。</span><span class="lang-en">Provides stable data endpoints for the frontend via RESTful and WebSocket APIs, enabling frontend-backend separation.</span></p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-green-700 text-center"><span class="lang-cn">核心KPI体系</span><span class="lang-en">Core KPI System</span></h4>
+                                <div class="bg-gray-100 p-6 rounded-lg text-center border border-gray-200">
+                                    <p class="text-gray-700 mb-4"><span class="lang-cn">我们已经构建了一套完整、分层的KPI体系，用于全面衡量矿山运营的各个方面。这套体系是发现问题、驱动优化的数据基础。</span><span class="lang-en">We have built a complete, multi-layered KPI system to comprehensively measure all aspects of mine operations. This system serves as the data foundation for identifying issues and driving optimization.</span></p>
+                                    <a href="kpi-details.html" class="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow hover:shadow-md transform hover:-translate-y-0.5">
+                                        <span class="lang-cn">查看详细KPI体系 &rarr;</span>
+                                        <span class="lang-en">View Detailed KPI System &rarr;</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Divider -->
+                    <hr/>
+
+                    <!-- Layer 3: Application -->
+                    <div id="layer-3">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 text-yellow-600 font-bold text-xl">L3</span>
+                            <div>
+                                <h3 class="text-3xl font-bold text-yellow-800"><span class="lang-cn">应用层</span><span class="lang-en">Application Layer</span></h3>
+                                <p class="mt-2 text-gray-600"><span class="lang-cn">作为核心业务逻辑的执行载体，应用层将底层数据转化为具体的业务操作和管理流程，主要由两大核心系统构成。</span><span class="lang-en">As the carrier for core business logic, the application layer transforms underlying data into specific business operations and management processes, primarily composed of two core systems.</span></p>
+                                <a href="application-details.html#application" class="inline-flex items-center font-semibold text-yellow-600 hover:text-yellow-800 transition-colors mt-4">
+                                    <span class="lang-cn">查看该层详细功能 &rarr;</span>
+                                    <span class="lang-en">View Detailed Functions for This Layer &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                         <div class="grid md:grid-cols-2 gap-8 pl-4 md:pl-16">
+                            <div class="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <h5 class="text-xl font-semibold mb-3 text-yellow-800"><span class="lang-cn">数字化Hauling系统</span><span class="lang-en">Digital Hauling System</span></h5>
+                                <p class="mb-4 text-gray-700"><span class="lang-cn">运输业务的运营核心，负责从计划到执行的全流程数字化管理。</span><span class="lang-en">The operational core of the transport business, responsible for digital management from planning to execution.</span></p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">任务规划</span><span class="lang-en">Task Planning</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">装/卸载管理</span><span class="lang-en">Load/Dump Mgmt</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">运输管理</span><span class="lang-en">Transport Mgmt</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">司机管理</span><span class="lang-en">Driver Mgmt</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">车辆检查</span><span class="lang-en">Vehicle Inspection</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">司机移动端应用</span><span class="lang-en">Driver Mobile App</span></span>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <h5 class="text-xl font-semibold mb-3 text-yellow-800"><span class="lang-cn">设备管理系统</span><span class="lang-en">Equipment Management System</span></h5>
+                                <p class="mb-4 text-gray-700"><span class="lang-cn">设备资产的全生命周期管理中心，确保设备高效、可靠、经济地运行。</span><span class="lang-en">The lifecycle management center for equipment assets, ensuring efficient, reliable, and economical operation.</span></p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">设备档案管理</span><span class="lang-en">Equipment Profile</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">数据监测与GPS</span><span class="lang-en">Data & GPS Tracking</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">设备维护</span><span class="lang-en">Maintenance</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">轮胎健康管理</span><span class="lang-en">Tire Health Mgmt</span></span>
+                                    <span class="inline-flex items-center rounded-md bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20"><span class="lang-cn">统计报表</span><span class="lang-en">Reports</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <hr/>
+
+                     <!-- Layer 4: Device -->
+                    <div id="layer-4">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-red-100 text-red-600 font-bold text-xl">L4</span>
+                            <div>
+                                <h3 class="text-3xl font-bold text-red-800"><span class="lang-cn">设备层</span><span class="lang-en">Device Layer</span></h3>
+                                <p class="mt-2 text-gray-600"><span class="lang-cn">作为连接物理世界与数字世界的桥梁，设备层是所有数据的源头，负责从现场各类设备采集原始数据。</span><span class="lang-en">As the bridge between the physical and digital worlds, the device layer is the source of all data, responsible for collecting raw data from various on-site assets.</span></p>
+                                <a href="application-details.html#device" class="inline-flex items-center font-semibold text-red-600 hover:text-red-800 transition-colors mt-4">
+                                    <span class="lang-cn">查看该层详细功能 &rarr;</span>
+                                    <span class="lang-en">View Detailed Functions for This Layer &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pl-4 md:pl-16 space-y-8">
+                             <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700"><span class="lang-cn">设备集成策略</span><span class="lang-en">Equipment Integration Strategy</span></h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><b class="text-gray-800"><span class="lang-cn">三一设备 (原生集成):</span><span class="lang-en">Sany Equipment (Native):</span></b> <span class="lang-cn">通过三一物联平台以`API对接`和`MQTT消息队列`实现无缝、高质量的数据接入。</span><span class="lang-en">Seamless, high-quality data access via Sany's IoT platform using `API integration` and `MQTT message queues`.</span></div>
+                                    <div class="p-4 bg-red-50 rounded-lg border border-red-200"><b class="text-gray-800"><span class="lang-cn">非三一设备 (兼容集成):</span><span class="lang-en">Non-Sany Equipment (Compatible):</span></b> <span class="lang-cn">采用"软件优先，硬件为辅"策略。优先通过`AEMP 2.0`标准API对接，否则为其`加装统一的T-Box`。</span><span class="lang-en">Adopts a "software-first, hardware-assisted" strategy. Prioritizes `AEMP 2.0` standard API integration; otherwise, `retrofits with a unified T-Box`.</span></div>
+                                </div>
+
+                            </div>
+                             <div>
+                                <h4 class="text-xl font-semibold mb-3 text-red-700"><span class="lang-cn">数据采集与传感器体系</span><span class="lang-en">Data Acquisition & Sensor System</span></h4>
+                                 <p class="text-gray-700 mb-3"><span class="lang-cn">以 `T-Box (车载智能终端)` 为核心数据网关，集成各类功能传感器，为上层应用提供基础数据。</span><span class="lang-en">With the `T-Box (Telematics-Box)` as the core data gateway, it integrates various functional sensors to provide foundational data for upper-layer applications.</span></p>
+                                 <div class="flex flex-wrap gap-2">
+                                     <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">T-Box / 数据网关</span><span class="lang-en">T-Box / Gateway</span></span>
+                                     <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">TPMS (胎压)</span><span class="lang-en">TPMS</span></span>
+                                     <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">燃油/油位传感器</span><span class="lang-en">Fuel Sensor</span></span>
+                                     <span class="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 ring-1 ring-inset ring-gray-500/10"><span class="lang-cn">GPS模块</span><span class="lang-en">GPS Module</span></span>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Divider -->
+                    <hr/>
+
+                     <!-- Layer 5: Integration -->
+                    <div id="layer-5">
+                        <div class="flex items-start gap-4 mb-6">
+                            <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 text-gray-700 font-bold text-xl">L5</span>
+                            <div>
+                                <h3 class="text-3xl font-bold text-gray-800"><span class="lang-cn">系统集成</span><span class="lang-en">System Integration</span></h3>
+                                <p class="mt-2 text-gray-600"><span class="lang-cn">打通客户现有的信息孤岛，实现业务流程的端到端自动化和数据驱动，让数据在不同系统间自由流动，创造更大价值。</span><span class="lang-en">Breaks down existing information silos to achieve end-to-end process automation and data-driven operations, allowing data to flow freely between systems to create greater value.</span></p>
+                                <a href="application-details.html#integration" class="inline-flex items-center font-semibold text-gray-600 hover:text-gray-800 transition-colors mt-4">
+                                    <span class="lang-cn">查看该层详细功能 &rarr;</span>
+                                    <span class="lang-en">View Detailed Functions for This Layer &rarr;</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="pl-4 md:pl-16 space-y-8">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-3 text-gray-700"><span class="lang-cn">对接系统范围</span><span class="lang-en">Scope of System Integration</span></h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                    <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-red-500"><span class="font-semibold lang-cn">地磅系统</span><span class="font-semibold lang-en">Weighbridge</span><br/><span class="text-sm text-red-600 lang-cn">(必须)</span><span class="text-sm text-red-600 lang-en">(Mandatory)</span></div>
+                                    <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500"><span class="font-semibold lang-cn">ERP 系统</span><span class="font-semibold lang-en">ERP System</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                    <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500"><span class="font-semibold lang-cn">驳船物流系统</span><span class="font-semibold lang-en">Barge Logistics</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                    <div class="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500"><span class="font-semibold lang-cn">采购/库存系统</span><span class="font-semibold lang-en">Procurement/Inventory</span><br/><span class="text-sm text-green-600 lang-cn">(推荐)</span><span class="text-sm text-green-600 lang-en">(Recommended)</span></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: Implementation Roadmap -->
+        <section id="roadmap" class="bg-gray-50">
+            <div class="container mx-auto px-6 py-16">
+                <div class="flex items-center mb-16">
+                    <div class="text-8xl font-black text-gray-100 mr-8 select-none">04</div>
+                    <div>
+                        <h2 class="section-title"><span class="lang-cn">第四部分：实施路径</span><span class="lang-en">Part 4: Implementation Roadmap</span></h2>
+                        <p class="section-subtitle"><span class="lang-cn">分阶段交付，持续创造价值</span><span class="lang-en">Phased delivery, continuous value creation</span></p>
+                    </div>
+                </div>
+
+                <ol class="relative border-s-2 border-blue-200 ml-8">
+                    <!-- Phase 1 -->
+                    <li class="mb-12 ms-8">
+                        <span class="absolute flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full -start-8 ring-8 ring-white text-blue-600 font-bold text-2xl">1</span>
+                        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-gray-900"><span class="lang-cn">阶段一: MVP与核心可视化</span><span class="lang-en">Phase 1: MVP & Core Visualization</span></h3>
+                            <p class="text-lg text-blue-600 font-semibold my-2"><span class="lang-cn">奠定基础: 实现业务"在线化"与"可视化"</span><span class="lang-en">Laying the Foundation: Achieving "Online" & "Visualized" Operations</span></p>
+                            <div class="flex items-center space-x-4 text-sm text-gray-500 my-3">
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Leadtime: ~6-7 months
+                                </span>
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1h4a2 2 0 012 2v11a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h4z"></path>
+                                    </svg>
+                                    Budget: $150K
+                                </span>
+                            </div>
+                            <div class="text-xs italic text-gray-500 -mt-2 mb-3">
+                                <span class="lang-cn">*预算不含硬件及传感器，将另行核算。</span>
+                                <span class="lang-en">*The budgets above cover software and service fees only. Costs for hardware, sensors, and other physical materials will be calculated separately based on actual requirements.</span>
+                            </div>
+                            <p class="mb-3 text-gray-600"><span class="lang-cn">此阶段旨在快速上线最小可行产品(MVP)，打通核心数据链路，解决"看不见、管不了"的燃眉之急。我们首先聚焦于"车辆实时跟踪"和"手动任务规划"，因为它们是所有后续优化的数据和流程基石。</span><span class="lang-en">This phase aims to rapidly launch an MVP, establish the core data link, and address the urgent issue of "can't see, can't manage." We first focus on "real-time vehicle tracking" and "manual task planning" as they are the data and process cornerstones for all subsequent optimizations.</span></p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-800 mb-2"><span class="lang-cn">核心交付物 / Key Deliverables:</span></h4>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700">
+                                    <li><strong class="font-semibold"><span class="lang-cn">管控塔:</span><span class="lang-en">Tower:</span></strong> <span class="lang-cn">基础版驾驶舱 (GIS地图, 核心KPI)</span><span class="lang-en">Basic Dashboard (GIS, Core KPIs)</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">应用系统:</span><span class="lang-en">Apps:</span></strong> <span class="lang-cn">Hauling系统(手动规划、跟踪), 设备系统(电子台账)</span><span class="lang-en">Hauling Sys (manual plan, tracking), Equip Sys (digital ledger)</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">集成:</span><span class="lang-en">Integration:</span></strong> <span class="lang-cn">对接车辆T-Box和地磅系统</span><span class="lang-en">Integrate T-Boxes & weighbridge system</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Phase 2 -->
+                    <li class="mb-12 ms-8">
+                        <span class="absolute flex items-center justify-center w-16 h-16 bg-green-100 rounded-full -start-8 ring-8 ring-white text-green-600 font-bold text-2xl">2</span>
+                         <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-gray-900"><span class="lang-cn">阶段二: 扩展与优化</span><span class="lang-en">Phase 2: Expansion & Optimization</span></h3>
+                            <p class="text-lg text-green-600 font-semibold my-2"><span class="lang-cn">深化能力: 从"被动监控"走向"主动优化"</span><span class="lang-en">Deepening Capabilities: From "Passive Monitoring" to "Active Optimization"</span></p>
+                            <div class="flex items-center space-x-4 text-sm text-gray-500 my-3">
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Leadtime: ~4 months
+                                </span>
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1h4a2 2 0 012 2v11a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h4z"></path>
+                                    </svg>
+                                    Budget: $90K-$100K
+                                </span>
+                            </div>
+                            <div class="text-xs italic text-gray-500 -mt-2 mb-3">
+                                <span class="lang-cn">*预算不含硬件及传感器，将另行核算。</span>
+                                <span class="lang-en">*The budgets above cover software and service fees only. Costs for hardware, sensors, and other physical materials will be calculated separately based on actual requirements.</span>
+                            </div>
+                            <p class="mb-3 text-gray-600"><span class="lang-cn">在MVP基础上，我们通过引入高级分析、工单管理和外部系统集成，解决"决策无数据"、"维修靠经验"和"数据孤岛"等深层问题，真正实现降本增效。</span><span class="lang-en">Building on the MVP, we address deeper issues like "data-less decisions," "experience-based maintenance," and "data silos" by introducing advanced analytics, work order management, and external system integration to truly achieve cost reduction and efficiency improvement.</span></p>
+                             <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-800 mb-2"><span class="lang-cn">核心交付物 / Key Deliverables:</span></h4>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700">
+                                    <li><strong class="font-semibold"><span class="lang-cn">管控塔:</span><span class="lang-en">Tower:</span></strong> <span class="lang-cn">高级分析驾驶舱 (多维度分析, 自定义报表)</span><span class="lang-en">Advanced Analytics Dashboard (multi-dimensional analysis, custom reports)</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">应用系统:</span><span class="lang-en">Apps:</span></strong> <span class="lang-cn">增加装卸管理、工单管理、驾驶行为分析、备件管理等模块</span><span class="lang-en">Add modules for loading/dumping, work orders, driving behavior, and spare parts</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">集成:</span><span class="lang-en">Integration:</span></strong> <span class="lang-cn">对接ERP、驳船物流、库存系统</span><span class="lang-en">Integrate with ERP, barge logistics, and inventory systems</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Phase 3 -->
+                    <li class="ms-8">
+                        <span class="absolute flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full -start-8 ring-8 ring-white text-yellow-600 font-bold">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        </span>
+                        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+                            <h3 class="text-2xl font-bold text-gray-900"><span class="lang-cn">未来规划: AI赋能</span><span class="lang-en">Future Plan: AI Empowerment</span></h3>
+                            <p class="text-lg text-yellow-500 font-semibold my-2"><span class="lang-cn">智能驱动: 从"优化"走向"卓越运营"</span><span class="lang-en">Intelligence-Driven: From "Optimization" to "Operational Excellence"</span></p>
+                            <p class="mb-3 text-gray-600"><span class="lang-cn">在前两阶段的坚实基础上，引入AI能力，通过`设备健康评估`和`调度优化引擎`等高级应用，将运营效率和决策水平提升至行业领先，实现卓越运营。</span><span class="lang-en">On the solid foundation of the first two phases, we will introduce AI capabilities. Through advanced applications like `equipment health assessment` and a `dispatch optimization engine`, we will elevate operational efficiency and decision-making to an industry-leading level.</span></p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-800 mb-2"><span class="lang-cn">核心交付物 / Key Deliverables:</span></h4>
+                                <ul class="list-disc list-inside space-y-1 text-gray-700">
+                                    <li><strong class="font-semibold"><span class="lang-cn">管控塔:</span><span class="lang-en">Tower:</span></strong> <span class="lang-cn">智能分析与建议驾驶舱</span><span class="lang-en">Intelligent Analytics & Recommendation Dashboard</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">应用系统:</span><span class="lang-en">Apps:</span></strong> <span class="lang-cn">引入AI模型(如健康评估、调度优化)</span><span class="lang-en">Introduce AI models (e.g., Health Assessment, Dispatch Optimization)</span></li>
+                                    <li><strong class="font-semibold"><span class="lang-cn">集成:</span><span class="lang-en">Integration:</span></strong> <span class="lang-cn">对接AI平台或部署边缘计算</span><span class="lang-en">Integrate AI platforms or deploy edge computing</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Part 5: Reference Case -->
+        <section id="case-study" class="bg-white">
+            <div class="container mx-auto px-6 py-16">
+                <!-- Section Header -->
+                <div class="flex items-center mb-16">
+                    <div class="text-8xl font-black text-gray-100 mr-8 select-none">05</div>
+                    <div>
+                        <h2 class="section-title"><span class="lang-cn">第五部分：参考案例</span><span class="lang-en">Part 5: Reference Case</span></h2>
+                        <p class="section-subtitle"><span class="lang-cn">事实胜于雄辩，见证实际价值</span><span class="lang-en">Seeing is Believing: Witness the Real-World Value</span></p>
+                    </div>
+                </div>
+
+                <!-- Case Study Card -->
+                <div class="max-w-6xl mx-auto bg-gray-50 rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+                    <div class="p-8 md:p-12">
+                        <!-- Case Title -->
+                        <div class="text-center mb-10">
+                            <h3 class="text-2xl md:text-3xl font-bold text-gray-800"><span class="lang-cn">青山园区青美邦公司 - 运输设备运营平台</span><span class="lang-en">IMIP Park (QMB) - Transportation Equipment Operation Platform</span></h3>
+                            <p class="text-gray-500 mt-2"><span class="lang-cn">一个真实的矿区智慧物流转型故事</span><span class="lang-en">A Real-World Story of Smart Mining Logistics Transformation</span></p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                            <!-- Left side: Challenges and Solution -->
+                            <div class="space-y-8">
+                                <!-- Image -->
+                                <div>
+                                    <img src="案例图片.png" alt="矿区卡车运输实景" class="rounded-lg shadow-lg w-full object-cover border border-gray-200">
+                                </div>
+                                <!-- Challenges -->
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4 text-gray-700"><span class="lang-cn">业务挑战</span><span class="lang-en">Business Challenges</span></h4>
+                                    <ul class="space-y-3 text-gray-600">
+                                        <li class="flex items-start">
+                                            <svg class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <div><strong class="text-gray-800 lang-cn">运营管理者:</strong><strong class="text-gray-800 lang-en">For Ops Managers:</strong> <span class="lang-cn">缺乏实时状态可见性，成本核算困难。</span><span class="lang-en">Lacked real-time status visibility and faced difficult cost accounting.</span></div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <svg class="w-6 h-6 text-red-500 mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.472-2.472a3.375 3.375 0 00-4.773-4.773L6.75 11.42m5.877 5.877l-5.877-5.877m0 0a3.375 3.375 0 00-4.773 4.773l2.472 2.472"></path></svg>
+                                            <div><strong class="text-gray-800 lang-cn">维修部门:</strong><strong class="text-gray-800 lang-en">For Maintenance Dept:</strong> <span class="lang-cn">无法掌握维修进度与资源，数据统计难。</span><span class="lang-en">Couldn't track repair progress/resources; data collection was difficult.</span></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Solution -->
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4 text-gray-700"><span class="lang-cn">解决方案</span><span class="lang-en">Solution</span></h4>
+                                    <p class="text-gray-600"><span class="lang-cn">RootCloud提供了端到端解决方案，接入近400台矿卡和80台挖掘机。通过部署GPS/油位传感器，并提供覆盖车辆管理与车务管理全流程的软件模块，实现了数字化转型。</span><span class="lang-en">RootCloud provided an end-to-end solution, connecting nearly 400 mining trucks and 80 excavators. Digital transformation was achieved by deploying GPS/fuel sensors and providing software modules covering the entire process of vehicle and fleet service management.</span></p>
+                                </div>
+                            </div>
+                            <!-- Right side: Results -->
+                            <div class="bg-white p-6 rounded-lg border-2 border-green-300 flex flex-col justify-center">
+                                <h4 class="text-xl font-semibold mb-4 text-center text-green-800"><span class="lang-cn">核心价值与成果</span><span class="lang-en">Core Value & Outcomes</span></h4>
+                                <p class="text-center text-gray-600 mb-6 px-4"><span class="lang-cn">该平台的实施带来了切实、显著的成果。它不仅提供了全面的运营可视性，更通过可执行的洞察，直接在效率、成本和安全方面取得了突破。</span><span class="lang-en">The platform's implementation delivered tangible, significant results. It provided not only comprehensive operational visibility but also actionable insights that led to direct breakthroughs in efficiency, cost, and security.</span></p>
+                                <div class="space-y-6">
+                                    <!-- Result 1 -->
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-3xl font-bold text-green-600">+10%</p>
+                                            <p class="text-gray-600 font-semibold"><span class="lang-cn">车辆运输效率</span><span class="lang-en">Vehicle Transport Efficiency</span></p>
+                                        </div>
+                                    </div>
+                                    <!-- Result 2 -->
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                                            <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-3xl font-bold text-red-500">-15%</p>
+                                            <p class="text-gray-600 font-semibold"><span class="lang-cn">业务运营成本</span><span class="lang-en">Business Operating Costs</span></p>
+                                        </div>
+                                    </div>
+                                    <!-- Result 3 -->
+                                    <div class="flex items-center">
+                                         <div class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                        </div>
+                                        <div>
+                                            <p class="text-xl font-bold text-blue-600"><span class="lang-cn">数据可视 & 资产安全</span><span class="lang-en">Data Visibility & Asset Security</span></p>
+                                             <p class="text-gray-600 font-semibold"><span class="lang-cn">全面保障</span><span class="lang-en">Fully Ensured</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 IROOTECH TECHNOLOGY Co.,Ltd All Rights Reserved.</p>
+            <p class="text-sm text-gray-400 mt-2">
+                <span class="lang-cn">数字矿山管控塔解决方案</span>
+                <span class="lang-en">Digital Mine Control Tower Solution</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Accordion Logic ---
+            const accordionButtons = document.querySelectorAll('[data-accordion-target]');
+            
+            accordionButtons.forEach(button => {
+                const targetId = button.getAttribute('data-accordion-target');
+                const targetBody = document.querySelector(targetId);
+                const icon = button.querySelector('[data-accordion-icon]');
+
+                // Function to set the state based on aria-expanded
+                const setAccordionState = () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    if (isExpanded) {
+                        targetBody.classList.remove('hidden');
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        targetBody.classList.add('hidden');
+                        icon.classList.add('rotate-180');
+                    }
+                };
+
+                // Set initial state
+                setAccordionState();
+
+                // Add click listener
+                button.addEventListener('click', () => {
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', !isExpanded);
+                    setAccordionState();
+                });
+            });
+
+            // --- Solution-PainPoint Mapping Logic v2 ---
+
+            // 1. Dynamically generate tags
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            const currentLang = document.body.getAttribute('lang') || 'cn';
+
+            scenarioCards.forEach(card => {
+                const targetIds = card.dataset.targets.split(',');
+                const tagsContainer = card.querySelector('.scenario-tags');
+                
+                targetIds.forEach(id => {
+                    const painPoint = document.getElementById(id.trim());
+                    if (painPoint) {
+                        const title = painPoint.getAttribute(`data-title-${currentLang}`);
+                        const tag = document.createElement('span');
+                        tag.className = 'pain-point-tag';
+                        tag.innerHTML = `<span class="lang-${currentLang}">${title}</span>`;
+                        tagsContainer.appendChild(tag);
+                    }
+                });
+            });
+
+            // 2. Add interactive highlighting
+            const interactiveItems = document.querySelectorAll('[data-targets]');
+            
+            interactiveItems.forEach(item => {
+                const targetIds = item.dataset.targets.split(',');
+                
+                item.addEventListener('mouseenter', () => {
+                    targetIds.forEach(id => {
+                        const targetElement = document.getElementById(id.trim());
+                        if(targetElement) {
+                            targetElement.classList.add('highlight');
+                        }
+                    });
+                     if (item.classList.contains('pain-point-item-compact') || item.classList.contains('scenario-card')) {
+                        item.classList.add('highlight');
+                    }
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    targetIds.forEach(id => {
+                        const targetElement = document.getElementById(id.trim());
+                        if(targetElement) {
+                            targetElement.classList.remove('highlight');
+                        }
+                    });
+                     if (item.classList.contains('pain-point-item-compact') || item.classList.contains('scenario-card')) {
+                        item.classList.remove('highlight');
+                    }
+                });
+            });
+
+            // 3. Re-generate tags on language switch
+            const langSwitcher = document.getElementById('lang-switcher');
+            if (langSwitcher) {
+                const observer = new MutationObserver((mutationsList) => {
+                    for(const mutation of mutationsList) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+                             // Re-run tag generation
+                             scenarioCards.forEach(card => {
+                                const targetIds = card.dataset.targets.split(',');
+                                const tagsContainer = card.querySelector('.scenario-tags');
+                                if (!tagsContainer) return;
+                                tagsContainer.innerHTML = ''; // Clear existing
+                                const currentLang = document.body.getAttribute('lang') || 'cn';
+
+                                targetIds.forEach(id => {
+                                    const painPoint = document.getElementById(id.trim());
+                                    if (painPoint) {
+                                        const title = painPoint.getAttribute(`data-title-${currentLang}`);
+                                        const tag = document.createElement('span');
+                                        tag.className = 'pain-point-tag';
+                                        
+                                        // We only need to generate the span for the *current* language to be displayed
+                                        const titleCn = painPoint.getAttribute('data-title-cn');
+                                        const titleEn = painPoint.getAttribute('data-title-en');
+                                        tag.innerHTML = `<span class="lang-cn">${titleCn}</span><span class="lang-en">${titleEn}</span>`;
+                                        
+                                        tagsContainer.appendChild(tag);
+                                    }
+                                });
+                            });
+                        }
+                    }
+                });
+                observer.observe(document.body, { attributes: true });
+            }
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
